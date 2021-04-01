@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap');
+:root {
+    /*color*/
+    --good: #7cc576;
+    --neutral: #6dcff6;
+    --bad: #f26c4f;
+    /*font-color*/
+    --black: #000000;
+    --grey: #3c3c3c;
+    --green: #7cc576;
+    --red: #f26c4f;
+    /*font-family*/
+    --roboto: 'Roboto', sans-serif;
+    --sourceSansPro: 'Source Sans Pro', sans-serif;
+    /*font-style*/
+    --italic: italic;
+    /*font-size*/
+    --normal: 16px;
+    --title: 3em;
+    --big: 1.5em;
+    --small: 1em;
+    /*font-weight*/
+    --bold: bold;
+    /*margin*/
+    --main: 4.5em 0 0 0;
+    --paragraph: 2em 0 0 0;
+    /*text-align*/
+    --justify: justify;
+    /*text-transform*/
+    --uppercase: uppercase;
+}
+.hmvi-x-monthly-report {
+    font-size: var(--normal);
+}
+.hmvi-x-monthly-report .hmvi-x-font-main {
+    font-size: var(--big);
+    color: var(--grey);
+    font-family: var(--sourceSansPro);
+    font-weight: var(--bold);
+    line-height: 1.2;
+}
+.hmvi-x-monthly-report .hmvi-x-font-paragraph {
+    font-size: var(--small);
+    color: var(--grey);
+    font-family: var(--roboto);
+}
+.hmvi-x-monthly-report .hmvi-x-font-footer {
+    font-size: 1.1em;
+    color: #dddddd;
+    font-family: var(--roboto);
+}
+.hmvi-x-monthly-report .hmvi-x-font-paragraph-small {
+    font-size: 1.1em;
+    color: var(--grey);
+    font-family: var(--roboto);
+}
+.hmvi-x-monthly-report .hmvi-x-font-italic {
+    font-style: var(--italic);
+}
+.hmvi-x-monthly-report .hmvi-x-font-bold {
+    font-weight: var(--bold);
+}
+.hmvi-x-monthly-report .hmvi-x-font-justify {
+    text-align: var(--justify);
+}
+.hmvi-x-monthly-report .hmvi-x-font-align-center {
+    text-align: center;
+}
+.hmvi-x-monthly-report .hmvi-x-font-black {
+    color: var(--black);
+}
+.hmvi-x-monthly-report .hmvi-x-font-green{
+    color: var(--green);
+}
+.hmvi-x-monthly-report .hmvi-x-font-red {
+    color: var(--red);
+}
+.hmvi-x-monthly-report .hmvi-x-margin-main {
+    margin: 4.5em 0 0 0;
+}
+.hmvi-x-monthly-report .hmvi-x-margin-paragraph {
+    margin: 2em 0 0 0;
+}
+.hmvi-x-monthly-report .hmvi-x-margin-paragraph {
+    position: relative;
+}
+.hmvi-x-monthly-report .hmvi-x-margin-paragraph .hmvi-slide-buttons-right {
+    /* position: absolute;
+    top: 0;
+    left: 0;
+    right: 0; */
+    text-align: right;
+    padding: 0 1rem;
+}
+.hmvi-x-monthly-report .hmvi-x-margin-paragraph .hmvi-slide-buttons-right .hmvi-btn-round {
+    border-radius: 50%;
+}
+.hmvi-x-monthly-report .hmvi-x-margin-paragraph .hmvi-slide-buttons-right .hmvi-btn-flat {
+    border: 1px solid #bfb7b3;
+    padding: .375rem .675rem;
+    color: #138496;
+}
+.hmvi-x-monthly-report .hmvi-x-margin-footer {
+    margin: 0 0 4.5em 0;
+}
+
+.hmvi-x-monthly-report .hmvi-x-margin-leftside {
+    margin-left: -0.8em;
+}
+.hmvi-x-monthly-report .hmvi-x-vertical-center {
+    vertical-align: middle !important;
+}
+.hmvi-x-monthly-report .hmvi-x-table-overflow-hidden {
+    table-layout: fixed;
+    width: 98% !important;
+}
+.hmvi-x-monthly-report .hmvi-x-table-none-border {
+    border: none !important;
+}
+.hmvi-x-monthly-report .hmvi-x-table-solid-border {
+    border: 0.01em solid darkgrey;
+}
+.hmvi-x-monthly-report .hmvi-x-paragraph-vertical {
+    line-height: 1.1;
+}
+.hmvi-x-monthly-report .hmvi-x-paragraph-horizontal {
+    letter-spacing: 0.001em;
+}
+.hmvi-x-monthly-report .hmvi-x-font-title {
+    font-size: 3em;
+    font-family: var(--sourceSansPro);
+    font-weight: 700!important;
+    line-height: 1.2;
+    display: block;
+    text-transform: var(--uppercase);
+    padding: 0!important;
+    margin: 1em 0 .7em 0!important;
+    text-align: center;
+}
+
+.hmvi-x-monthly-report #state_performance_table td {
+    padding: 0 !important;
+}
+.hmvi-x-monthly-report #metro_performance_table td {
+    padding: .5em 0 !important;
+}
+.hmvi-x-monthly-report hr {
+    border: .05em solid gainsboro;
+}
+.hmvi-x-monthly-report table {
+    table-layout: auto;
+    width: 100%;
+}
+.table-responsive {
+    border: none !important;
+}
+
+.hmvi-x-monthly-report .hmvi-x-underline {
+    margin: -.2em 0;
+}
+.hmvi-x-monthly-report .highcharts-tooltip span {
+    height:auto;
+    width:12em;
+}

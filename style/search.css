@@ -1,0 +1,15 @@
+.hmvi_explorer_autocomplete .hmvi_explorer_autocomplete-items {
+  /* margin-top: 0.5rem;
+  padding: 0 0.7rem; */
+  border: 1px #d1d2d2 solid;
+  border-radius: 3px;
+  border-top: unset;
+}
+
+.hmvi_explorer_autocomplete .hmvi_explorer_autocomplete-items > div {
+  padding: 0.5rem 0.7rem;
+}
+
+.hmvi_explorer_autocomplete .hmvi_explorer_autocomplete-items > div:hover {
+  background-color: #ececec;
+}

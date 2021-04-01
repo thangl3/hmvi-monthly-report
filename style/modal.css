@@ -1,0 +1,22 @@
+.modal .modal-body fieldset {
+  margin-bottom: 1rem;
+}
+.modal .modal-body fieldset .container {
+  margin-top: 0.2rem;
+}
+.modal .modal-body .range-slider {
+  padding: 0 1.1rem
+}
+.modal .modal-body .range-slider .slider.slider-horizontal {
+  width: 70%!important;
+}
+.modal .modal-body .range-slider b:first-child {
+  margin-right: 0.9rem;
+}
+.modal .modal-body .range-slider b:last-child {
+  margin-left: 0.9rem;
+}
+.modal .modal-body .range-slider .slider-handle {
+  background-color: #138496!important;
+  background-image: unset!important;
+}

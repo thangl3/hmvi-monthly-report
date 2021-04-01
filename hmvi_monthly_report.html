@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>HousingIQ</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.0/css/bootstrap-slider.min.css">
+  <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./style/hmvi-monthly-report.css">
+  <link rel="stylesheet" href="./style/checkbox-switcher.css">
+  <link rel="stylesheet" href="./style/modal.css">
+  <link rel="stylesheet" href="./style/search.css">
+  <!--  bootstrap-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.1/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.0/bootstrap-slider.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+  <script src="https://kit.fontawesome.com/d69b2856c7.js" crossorigin="anonymous"></script>
+  <!--  highcharts-->
+  <script src="https://code.highcharts.com/stock/highstock.js"></script>
+  <script src="https://code.highcharts.com/maps/modules/map.js"></script>
+  <script src="https://code.highcharts.com/highcharts-more.js"></script>
+  <script src="https://code.highcharts.com/modules/series-label.js"></script>
+  <script src="https://code.highcharts.com/modules/annotations.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.7.2/proj4.js"></script>
+  <script src="https://code.highcharts.com/mapdata/countries/us/us-all.js"></script>
+  <script src="https://code.highcharts.com/stock/modules/drag-panes.js"></script>
+</head>
+
+<body>
+  <div class="hmvi-x-monthly-report">
+    <div class="container">
+      <div id="report_banner">
+        <div class="hmvi-x-font-title">Taking the Pulse</div>
+        <div class="hmvi-x-font-main hmvi-x-font-align-center" id="report_date"></div>
+      </div>
+      <div id="report_main_contents">
+        <div class="hmvi-x-margin-paragraph" id="us_summary">
+          <div class="row">
+            <div class="col-xl-4 hmvi-x-vertical-center hmvi-x-margin-paragraph">
+              <div class="hmvi-x-font-main hmvi-x-vertical-center" id="us_overview"></div>
+              <div class="hmvi-x-font-paragraph hmvi-x-margin-paragraph hmvi-x-font-justify" id="us_overview_2"></div>
+            </div>
+            <div class="col-xl-8 hmvi-x-vertical-center hmvi-x-margin-paragraph">
+              <div id="us_summary_chart"></div>
+            </div>
+          </div>
+        </div>
+        <div class="hmvi-x-margin-main" id="state_summary">
+          <div class="hmvi-x-font-main hmvi-x-font-justify" id="state_overview"></div>
+          <div class="hmvi-x-font-paragraph hmvi-x-margin-paragraph hmvi-x-font-justify"
+            id="state_performance_overview"></div>
+          <div class="hmvi-x-margin-paragraph">
+            <div class="row">
+              <div class="col-xl-6">
+                <div id="state_summary_map"></div>
+              </div>
+              <div class="col-xl-6">
+                <div class="row  hmvi-x-margin-paragraph">
+                  <div class="col-sm-6 hmvi-x-font-paragraph hmvi-x-paragraph-vertical">
+                    <div class="row">
+                      <div class="col-lg-4 col-12 col-xl-12">
+                        <span class="hmvi-x-font-green hmvi-x-font-bold">Top 3 States</span>
+                      </div>
+                      <div class="col-lg-6 col-12 col-xl-12">
+                        <span class="hmvi-x-font-black hmvi-x-paragraph-horizontal">Forecasted Appreciation (%)</span>
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <div id="state_performance_top_table_tr_1_1"></div>
+                      <div class="" id="state_performance_top_table_tr_1_2"></div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <div class="" id="state_performance_top_table_tr_2_1"></div>
+                      <div class="" id="state_performance_top_table_tr_2_2"></div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <div class="" id="state_performance_top_table_tr_3_1"></div>
+                      <div class="" id="state_performance_top_table_tr_3_2"></div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 hmvi-x-font-paragraph hmvi-x-paragraph-vertical">
+                    <div class="row">
+                      <div class="col-lg-4 col-12 col-xl-12">
+                        <span class="hmvi-x-font-red hmvi-x-font-bold">Bottom 3 States</span>
+                      </div>
+                      <div class="col-lg-6 col-12 col-xl-12">
+                        <span class="hmvi-x-font-black hmvi-x-paragraph-horizontal">Forecasted Appreciation (%)</span>
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <div class="" id="state_performance_bottom_table_tr_1_1"></div>
+                      <div class="" id="state_performance_bottom_table_tr_1_2"></div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <div class="" id="state_performance_bottom_table_tr_2_1"></div>
+                      <div class="" id="state_performance_bottom_table_tr_2_2"></div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <div class="" id="state_performance_bottom_table_tr_3_1"></div>
+                      <div class="" id="state_performance_bottom_table_tr_3_2"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="table-responsive hmvi-x-margin-paragraph">
+                  <table
+                    class="table hmvi-x-font-paragraph hmvi-x-font-align-center hmvi-x-table-overflow-hidden  hmvi-x-vertical-center"
+                    id="state_performance_table">
+                    <tr>
+                      <td class="hmvi-x-table-none-border"></td>
+                      <td class="hmvi-x-table-none-border hmvi-x-font-bold" colspan="4">Forecasted</td>
+                    </tr>
+                    <tr>
+                      <td class="hmvi-x-table-none-border hmvi-x-font-bold">Current</td>
+                      <td class="hmvi-x-table-none-border hmvi-x-vertical-center">
+                        <i class='fas fa-arrow-alt-circle-up' style='font-size:24px; color: #7cc576'></i>
+                      </td>
+                      <td class="hmvi-x-table-none-border hmvi-x-vertical-center">
+                        <i class="fas fa-minus-circle" style="font-size: 24px; color: #6dcff6"></i>
+                      </td>
+                      <td class="hmvi-x-table-none-border hmvi-x-vertical-center">
+                        <i class='fas fa-arrow-alt-circle-down' style='font-size:24px; color: #f26c4f'></i>
+                      </td>
+                      <td class="hmvi-x-table-none-border">Total</td>
+                    </tr>
+                    <tr>
+                      <td class="hmvi-x-table-none-border hmvi-x-vertical-center">
+                        <i class='fas fa-arrow-alt-circle-up' style='font-size:24px; color: #7cc576'></i>
+                      </td>
+                      <td class="hmvi-x-table-solid-border" id="state_cross_tabs_tr_1_1"></td>
+                      <td class="hmvi-x-table-solid-border" id="state_cross_tabs_tr_1_2"></td>
+                      <td class="hmvi-x-table-solid-border" id="state_cross_tabs_tr_1_3"></td>
+                      <td class="hmvi-x-table-solid-border" id="state_cross_tabs_tr_1_4"></td>
+                    </tr>
+                    <tr>
+                      <td class="hmvi-x-table-none-border hmvi-x-vertical-center">
+                        <i class="fas fa-minus-circle" style="font-size: 24px; color: #6dcff6"></i>
+                      </td>
+                      <td class="hmvi-x-table-solid-border" id="state_cross_tabs_tr_2_1"></td>
+                      <td class="hmvi-x-table-solid-border" id="state_cross_tabs_tr_2_2"></td>
+                      <td class="hmvi-x-table-solid-border" id="state_cross_tabs_tr_2_3"></td>
+                      <td class="hmvi-x-table-solid-border" id="state_cross_tabs_tr_2_4"></td>
+                    </tr>
+                    <tr>
+                      <td class="hmvi-x-table-none-border hmvi-x-vertical-center">
+                        <i class='fas fa-arrow-alt-circle-down' style='font-size:24px; color: #f26c4f'></i>
+                      </td>
+                      <td class="hmvi-x-table-solid-border" id="state_cross_tabs_tr_3_1"></td>
+                      <td class="hmvi-x-table-solid-border" id="state_cross_tabs_tr_3_2"></td>
+                      <td class="hmvi-x-table-solid-border" id="state_cross_tabs_tr_3_3"></td>
+                      <td class="hmvi-x-table-solid-border" id="state_cross_tabs_tr_3_4"></td>
+                    </tr>
+                    <tr>
+                      <td class="hmvi-x-table-none-border">Total</td>
+                      <td class="hmvi-x-table-solid-border" id="state_cross_tabs_tr_4_1"></td>
+                      <td class="hmvi-x-table-solid-border" id="state_cross_tabs_tr_4_2"></td>
+                      <td class="hmvi-x-table-solid-border" id="state_cross_tabs_tr_4_3"></td>
+                      <td class="hmvi-x-table-solid-border" id="state_cross_tabs_tr_4_4"></td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hmvi-x-margin-main" id="metro_summary">
+          <div class="hmvi-x-font-main hmvi-x-font-justify" id="metro_overview"></div>
+          <div class="hmvi-x-font-paragraph hmvi-x-margin-paragraph hmvi-x-font-justify" id="metro_performance_overview"></div>
+          <div class="hmvi-x-margin-paragraph">
+            <div class="row">
+              <div class="col-xl-6">
+                <div class="table-responsive">
+                  <table
+                    class="table hmvi-x-font-paragraph hmvi-x-font-align-center hmvi-x-table-overflow-hidden  hmvi-x-vertical-center"
+                    id="metro_performance_table">
+                    <tr>
+                      <td class="hmvi-x-table-none-border"></td>
+                      <td class="hmvi-x-table-none-border hmvi-x-font-bold" colspan="4">Forecasted</td>
+                    </tr>
+                    <tr>
+                      <td class="hmvi-x-table-none-border hmvi-x-font-bold">Current</td>
+                      <td class="hmvi-x-table-none-border hmvi-x-vertical-center">
+                        <i class='fas fa-arrow-alt-circle-up' style='font-size:24px; color: #7cc576'></i>
+                      </td>
+                      <td class="hmvi-x-table-none-border hmvi-x-vertical-center">
+                        <i class="fas fa-minus-circle" style="font-size: 24px; color: #6dcff6"></i>
+                      </td>
+                      <td class="hmvi-x-table-none-border hmvi-x-vertical-center">
+                        <i class='fas fa-arrow-alt-circle-down' style='font-size:24px; color: #f26c4f'></i>
+                      </td>
+                      <td class="hmvi-x-table-none-border">Total</td>
+                    </tr>
+                    <tr>
+                      <td class="hmvi-x-table-none-border hmvi-x-vertical-center">
+                        <i class='fas fa-arrow-alt-circle-up' style='font-size:24px; color: #7cc576'></i>
+                      </td>
+                      <td class="hmvi-x-table-solid-border" id="metro_cross_tabs_tr_1_1"></td>
+                      <td class="hmvi-x-table-solid-border" id="metro_cross_tabs_tr_1_2"></td>
+                      <td class="hmvi-x-table-solid-border" id="metro_cross_tabs_tr_1_3"></td>
+                      <td class="hmvi-x-table-solid-border" id="metro_cross_tabs_tr_1_4"></td>
+                    </tr>
+                    <tr>
+                      <td class="hmvi-x-table-none-border hmvi-x-vertical-center">
+                        <i class="fas fa-minus-circle" style="font-size: 24px; color: #6dcff6"></i>
+                      </td>
+                      <td class="hmvi-x-table-solid-border" id="metro_cross_tabs_tr_2_1"></td>
+                      <td class="hmvi-x-table-solid-border" id="metro_cross_tabs_tr_2_2"></td>
+                      <td class="hmvi-x-table-solid-border" id="metro_cross_tabs_tr_2_3"></td>
+                      <td class="hmvi-x-table-solid-border" id="metro_cross_tabs_tr_2_4"></td>
+                    </tr>
+                    <tr>
+                      <td class="hmvi-x-table-none-border hmvi-x-vertical-center">
+                        <i class='fas fa-arrow-alt-circle-down' style='font-size:24px; color: #f26c4f'></i>
+                      </td>
+                      <td class="hmvi-x-table-solid-border" id="metro_cross_tabs_tr_3_1"></td>
+                      <td class="hmvi-x-table-solid-border" id="metro_cross_tabs_tr_3_2"></td>
+                      <td class="hmvi-x-table-solid-border" id="metro_cross_tabs_tr_3_3"></td>
+                      <td class="hmvi-x-table-solid-border" id="metro_cross_tabs_tr_3_4"></td>
+                    </tr>
+                    <tr>
+                      <td class="hmvi-x-table-none-border">Total</td>
+                      <td class="hmvi-x-table-solid-border" id="metro_cross_tabs_tr_4_1"></td>
+                      <td class="hmvi-x-table-solid-border" id="metro_cross_tabs_tr_4_2"></td>
+                      <td class="hmvi-x-table-solid-border" id="metro_cross_tabs_tr_4_3"></td>
+                      <td class="hmvi-x-table-solid-border" id="metro_cross_tabs_tr_4_4"></td>
+                    </tr>
+                  </table>
+                </div>
+
+              </div>
+              <div class="col-xl-6">
+                <div class="row">
+                  <div class="col-xl-12 col-lg-6 col-12">
+                    <div class="hmvi-x-margin-paragraph hmvi-x-font-paragraph hmvi-x-paragraph-vertical">
+                      <div>
+                        <span class="hmvi-x-font-green hmvi-x-font-bold">Top 5 Metros</span>
+                        <span> | </span>
+                        <span class="hmvi-x-font-black hmvi-x-paragraph-horizontal">Forecasted Appreciation (%)</span>
+                      </div>
+                      <div class="d-flex justify-content-between">
+                        <div id="metro_performance_top_table_tr_1_1"></div>
+                        <div id="metro_performance_top_table_tr_1_2"></div>
+                      </div>
+                      <div class="d-flex justify-content-between">
+                        <div id="metro_performance_top_table_tr_2_1"></div>
+                        <div id="metro_performance_top_table_tr_2_2"></div>
+                      </div>
+                      <div class="d-flex justify-content-between">
+                        <div id="metro_performance_top_table_tr_3_1"></div>
+                        <div id="metro_performance_top_table_tr_3_2"></div>
+                      </div>
+                      <div class="d-flex justify-content-between">
+                        <div id="metro_performance_top_table_tr_4_1"></div>
+                        <div id="metro_performance_top_table_tr_4_2"></div>
+                      </div>
+                      <div class="d-flex justify-content-between">
+                        <div id="metro_performance_top_table_tr_5_1"></div>
+                        <div id="metro_performance_top_table_tr_5_2"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-12 col-lg-6 col-12">
+                    <div class="hmvi-x-margin-paragraph hmvi-x-font-paragraph hmvi-x-paragraph-vertical">
+                      <div>
+                        <span class="hmvi-x-font-red hmvi-x-font-bold">Bottom 5 Metros</span>
+                        <span> | </span>
+                        <span class="hmvi-x-font-black hmvi-x-paragraph-horizontal">Forecasted Appreciation (%)</span>
+                      </div>
+                      <div class="d-flex justify-content-between">
+                        <div id="metro_performance_bottom_table_tr_1_1"></div>
+                        <div id="metro_performance_bottom_table_tr_1_2"></div>
+                      </div>
+                      <div class="d-flex justify-content-between">
+                        <div id="metro_performance_bottom_table_tr_2_1"></div>
+                        <div id="metro_performance_bottom_table_tr_2_2"></div>
+                      </div>
+                      <div class="d-flex justify-content-between">
+                        <div id="metro_performance_bottom_table_tr_3_1"></div>
+                        <div id="metro_performance_bottom_table_tr_3_2"></div>
+                      </div>
+                      <div class="d-flex justify-content-between">
+                        <div id="metro_performance_bottom_table_tr_4_1"></div>
+                        <div id="metro_performance_bottom_table_tr_4_2"></div>
+                      </div>
+                      <div class="d-flex justify-content-between">
+                        <div id="metro_performance_bottom_table_tr_5_1"></div>
+                        <div id="metro_performance_bottom_table_tr_5_2"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hmvi-x-margin-main" id="us_explorer">
+          <div class="hmvi-x-font-main hmvi-x-font-justify">US HMVI Explorer</div>
+          <div class="hmvi-x-font-paragraph hmvi-x-margin-paragraph hmvi-x-font-justify">The US Housing Market Vitality
+            Indicator measures the aggregate impact of economic factors on US house prices. </div>
+          <div class="hmvi-x-margin-paragraph">
+            <div id="us_chart" style="height:600px; width: 100%;"></div>
+          </div>
+        </div>
+        <div class="hmvi-x-margin-main" id="state_explorer">
+          <div class="hmvi-x-font-main hmvi-x-font-justify">State HMVI Explorer</div>
+          <div class="hmvi-x-font-paragraph hmvi-x-margin-paragraph hmvi-x-font-justify">State Housing Market Vitality
+            Indicators measure the aggregate impact of economic conditions on house prices statewide. They present a
+            more granular perspective than the US HMVI. State indicators enable objective comparisons among states. They
+            are derived from the metro housing markets comprising each state.</div>
+          <div class="hmvi-x-margin-paragraph">
+            <div id="state_map"></div>
+          </div>
+        </div>
+        <div class="hmvi-x-margin-main" id="metro_explorer">
+          <div class="hmvi-x-font-main hmvi-x-font-justify">Metro HMVI Explorer</div>
+          <div class="hmvi-x-font-paragraph hmvi-x-margin-paragraph hmvi-x-font-justify">The Metro Housing Market
+            Vitality Indicators measure the performance of metro housing markets relative to the national market. They
+            answer the question: How will the change in house prices in a particular market compare to the change in
+            house prices across the US?</div>
+          <div class="hmvi-x-margin-paragraph">
+            <div class="hmvi-slide-buttons-right" id="metro_map_actions" style="display: none;">
+              <div type="button" class="btn btn-default btn-md hmvi-btn-round hmvi-btn-flat" data-toggle="modal"
+                data-target="#search" title="Search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </div>
+              <div type="button" class="btn btn-default btn-md hmvi-btn-round hmvi-btn-flat" data-toggle="modal"
+                data-target="#sort" title="Rank by">
+                <i class="fa fa-sort-amount-desc" aria-hidden="true"></i>
+              </div>
+              <div type="button" class="btn btn-default btn-md hmvi-btn-round hmvi-btn-flat" data-toggle="modal"
+                data-target="#filter" title="Filter">
+                <i class="fa fa-filter" aria-hidden="true"></i>
+              </div>
+              <div type="button" class="btn btn-default btn-md hmvi-btn-round hmvi-btn-flat" id="btn_reset"
+                data-toggle="tooltip" data-placement="bottom" title="Reset Zoom">
+                <i class="fa fa-refresh" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div id="metro_map"></div>
+          </div>
+        </div>
+        <hr class="hmvi-x-margin-main">
+        <div class="hmvi-x-margin-main" id="methodology">
+          <div class="hmvi-x-font-main hmvi-x-font-justify">Methodology</div>
+          <div class="hmvi-x-font-paragraph hmvi-x-margin-paragraph hmvi-x-font-justify" id="methodology_text_1"></div>
+          <div class="hmvi-x-font-paragraph hmvi-x-margin-paragraph hmvi-x-font-justify" id="methodology_text_2"></div>
+        </div>
+        <div class="hmvi-x-margin-main" id="about_housing_iq">
+          <div class="hmvi-x-font-main hmvi-x-font-justify">About HousingIQ<sup>&trade;</sup></div>
+          <div class="hmvi-x-font-paragraph hmvi-x-margin-paragraph hmvi-x-font-justify" id="about_text_1"></div>
+          <div class="hmvi-x-font-paragraph hmvi-x-margin-paragraph hmvi-x-font-justify" id="about_text_2"></div>
+        </div>
+        <div class="hmvi-x-margin-main" id="report_footer">
+          <div class="hmvi-x-font-footer hmvi-x-font-align-center hmvi-x-margin-footer">housingiq.wainstreet.com
+            &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+            &copy; 2021 WAIN Street, LLC
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-template">
+    <div id="search" class="modal fade" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Search Markets</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <fieldset>
+              <div class="hmvi_explorer_autocomplete">
+                <div class="input-group">
+                  <input id="hmvi_explorer_metro_names_input_text" class="form-control" type="text"
+                    placeholder="Enter metro name" aria-describedby="input_refresh_addon" />
+                  <div class="input-group-append">
+                    <span class="input-group-text" id="input_refresh_addon" title="Clear">
+                      <i class="fa fa-refresh" aria-hidden="true"></i>
+                    </span>
+                  </div>
+              </div>
+              <div id="hmvi_explorer_selected_metros" class="hmvi_explorer_search_items_scroll"></div>
+            </fieldset>
+          </div>
+          <div class="modal-footer"><button class="btn btn-info btn-block" type="button"
+              data-dismiss="modal">Close</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="sort" class="modal fade" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Sort by</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container text-center">
+              <div class="btn-group btn-group-justified" data-toggle="buttons">
+                <label class="btn btn-group-xs active btn-info">
+                  <input id="sort_core_pctl" class="sortby-radio d-none" name="options" type="radio" value="score_pctl" /> Market Rank
+                </label>
+                <label class="btn btn-group-xs btn-default">
+                  <input id="sort_situation_pctl" class="sortby-radio d-none" name="options" type="radio" value="situation_pctl" /> Situation
+                </label>
+                <label class="btn btn-group-xs btn-default">
+                  <input id="sort_outlook_pctl" class="sortby-radio d-none" name="options" type="radio" value="outlook_pctl" /> Outlook
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-info btn-block" type="button" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="filter" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Filter Markets</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <fieldset>
+              <legend>Market Rank</legend>
+              <div class="container">
+                <div class="range-slider d-flex justify-content-center">
+                  <b class="hmvi_explorer_pctl_value hmvi_explorer_pctl_left">0</b>
+                  <input id="hmvi_explorer_percentil_slider_id" class="span2" type="text" />
+                  <b class="hmvi_explorer_pctl_value hmvi_explorer_pctl_right">100</b>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset class="situation-clear-fieldset">
+              <legend>Situation</legend>
+              <div class="container">
+                <div class="checkbox-inline situation-outperforming">
+                  <div class="form-check">
+                    <label class="form-check-label form-check-toggle">
+                      <input class="form-check-input" type="checkbox" value="Outperforming" checked />
+                      <span>Outperforming</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="checkbox-inline situation-tracking">
+                  <div class="form-check">
+                    <label class="form-check-label form-check-toggle">
+                      <input class="form-check-input" type="checkbox" value="Tracking" checked />
+                      <span>Tracking</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="checkbox-inline situation-unperforming">
+                  <div class="form-check">
+                    <label class="form-check-label form-check-toggle">
+                      <input class="form-check-input" type="checkbox" value="Underperforming" checked />
+                      <span>Underperforming</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset class="outlook-clear-fieldset">
+              <legend>Outlook</legend>
+              <div class="container">
+                <div class="checkbox-inline outlook-positive">
+                  <div class="form-check">
+                    <label class="form-check-label form-check-toggle">
+                      <input class="form-check-input" type="checkbox" value="Outperform" checked />
+                      <span>Outperform</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="checkbox-inline outlook-neutral">
+                  <div class="form-check">
+                    <label class="form-check-label form-check-toggle">
+                      <input class="form-check-input" type="checkbox" value="Track" checked />
+                      <span>Track</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="checkbox-inline outlook-negative">
+                  <div class="form-check">
+                    <label class="form-check-label form-check-toggle">
+                      <input class="form-check-input" type="checkbox" value="Underperform" checked />
+                      <span>Underperform</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-info btn-block" type="button" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script src="./src/helper/hmvi-chart-view-model.js"></script>
+<script src="./src/helper/hvmi-chart-view-sorting.js"></script>
+<script src="./src/helper/hmvi-chart-view-filter.js"></script>
+<script src="./src/helper/hmvi-chart-view-search.js"></script>
+<script src="./src/metro-chart-view.js"></script>
+<script src="./src/state-chart-view.js"></script>
+
+<script src="./hmvi_monthly_report_impl.js"></script>
+<script src="./hmvi_monthly_report.js"></script>
+
+</html>
